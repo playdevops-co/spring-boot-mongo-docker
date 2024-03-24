@@ -1,27 +1,27 @@
 version: "3"
-  services:
-    springapp:
-       image: raavangokul/spring-boot:GOKUL
-       ports:
-       - 8080:8080
-       environment:
-       - MONGO_DB_HOSTNAME=mongo 
-       - MONGO_DB_USERNAME=devdb
-       - MONGO_DB_PASSWORD=devdb@123
-       networks:
-       - springnetwork
-    mongo:
-      image: mongo
-      environment:
-      - MONGO_DB_USERNAME=devdb
-      - MONGO_DB_PASSWORD=devdb@123
-      volumes:
-      - mongovol: /dev/db
-      networks:
-      - springnetwork
-  networks:
-    springnetwork:
-      driver: bridge
-  volumes:
-    mongovol:
-      driver: local
+services:
+  springapp:
+    image: raavangokul/spring-boot:GOKUL
+    ports:
+    - 8080:8080
+    environment:
+    - MONGO_DB_HOSTNAME=mongo
+    - MONGO_DB_USERNAME=devdb
+    - MONGO_DB_PASSWORD=devdb@123
+    networks:
+    - springnetwork
+  mongo:
+    image: mongo
+    environment:
+    - MONGO_DB_USERNAME=devdb
+    - MONGO_DB_PASSWORD=devdb@123
+    volumes:
+    - mongovol:/dev/db
+    networks:
+    - springnetwork
+networks:
+  springnetwork:
+    driver: bridge
+volumes:
+  mongovol:
+    driver: local
